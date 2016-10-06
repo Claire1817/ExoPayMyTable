@@ -4,9 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by claire on 23/09/2016.
+ * Model handWriting
  */
 
 public class HandWriting {
+
     @SerializedName("id")
     public String id;
 
@@ -31,29 +33,28 @@ public class HandWriting {
     @SerializedName("rating_character_width")
     public int ratingCharacterWidth;
 
-
-    public void setRatingCharacterWidth(int rating_character_width) {
-        this.ratingCharacterWidth = rating_character_width;
+    public void setRatingEmbellishment(int ratingEmbellishment) {
+        this.ratingEmbellishment = ratingEmbellishment;
     }
 
-    public void setRatingEmbellishment(int rating_embellishment) {
-        this.ratingEmbellishment = rating_embellishment;
+    public void setRatingCharacterWidth(int ratingCharacterWidth) {
+        this.ratingCharacterWidth = ratingCharacterWidth;
     }
 
-    public void setRating_cursivity(int rating_cursivity) {
-        this.ratingCursivity = rating_cursivity;
+    public void setRatingCursivity(int ratingCursivity) {
+        this.ratingCursivity = ratingCursivity;
     }
 
-    public void setRatingNeatness(int rating_neatness) {
-        this.ratingNeatness = rating_neatness;
+    public void setRatingNeatness(int ratingNeatness) {
+        this.ratingNeatness = ratingNeatness;
     }
 
-    public void setDate_modified(String date_modified) {
-        this.dateModified = date_modified;
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
-    public void setDate_created(String date_created) {
-        this.dateCreated = date_created;
+    public void setDateModified(String dateModified) {
+        this.dateModified = dateModified;
     }
 
     public void setTitle(String title) {
@@ -64,27 +65,27 @@ public class HandWriting {
         this.id = id;
     }
 
-    public int getRating_character_width() {
+    public int getRatingCharacterWidth() {
         return ratingCharacterWidth;
     }
 
-    public int getRating_embellishment() {
-        return ratingEmbellishment;
-    }
-
-    public int getRating_cursivity() {
+    public int getRatingCursivity() {
         return ratingCursivity;
     }
 
-    public int getRating_neatness() {
+    public int getRatingEmbellishment() {
+        return ratingEmbellishment;
+    }
+
+    public int getRatingNeatness() {
         return ratingNeatness;
     }
 
-    public String getDate_modified() {
+    public String getDateModified() {
         return dateModified;
     }
 
-    public String getDate_created() {
+    public String getDateCreated() {
         return dateCreated;
     }
 

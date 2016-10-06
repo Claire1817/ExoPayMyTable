@@ -18,16 +18,21 @@ import retrofit.client.OkClient;
 
 /**
  * Created by claire on 23/09/2016.
+ * Connect to API
  */
 
 public class RetrofitManager {
 
     private static final String ENDPOINT = "https://api.handwriting.io";
-    private static int TimeOutValue = 10;
-    private static ILoadImage Service = null;
-    private static RetrofitManager Instance = null;
+
+    private static int timeOutValue = 10;
+
+    private static ILoadImage service = null;
+
+    private static RetrofitManager instance = null;
 
     private RetrofitManager() {
+
         String Username = "2176W8NHDNZVNB6V";
         String Password = "V5MDVZ7591W57ZCQ";
 
@@ -38,8 +43,8 @@ public class RetrofitManager {
                 "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
 
         final OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.setReadTimeout(TimeOutValue, TimeUnit.SECONDS);
-        okHttpClient.setConnectTimeout(TimeOutValue, TimeUnit.SECONDS);
+        okHttpClient.setReadTimeout(timeOutValue, TimeUnit.SECONDS);
+        okHttpClient.setConnectTimeout(timeOutValue, TimeUnit.SECONDS);
 
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
@@ -59,23 +64,25 @@ public class RetrofitManager {
                 request.addHeader("Accept", "application/json");
             }
         });
-        Service = builder
+        service = builder
                 .build()
                 .create(ILoadImage.class);
     }
 
     public static RetrofitManager getInstance() {
-        if (Instance == null) {
+
+        if (instance == null) {
             return (new RetrofitManager());
         } else
-            return Instance;
+            return instance;
     }
 
     public static ILoadImage getService() {
-        return Service;
+        return service;
     }
 
     public static boolean isNetworkAvailable(Context context) {
+
         ConnectivityManager cm = (ConnectivityManager) context.
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
@@ -86,5 +93,4 @@ public class RetrofitManager {
         }
         return false;
     }
-
 }

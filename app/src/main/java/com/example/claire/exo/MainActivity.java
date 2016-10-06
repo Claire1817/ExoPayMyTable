@@ -8,15 +8,19 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static String EXTRA_MESSAGE = "";
+    public final static String EXTRA_MESSAGE = "message";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
+    // When user click on button
+
     public void sendMessage(View view) {
+
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = (EditText) findViewById(R.id.edit_message);
         String message = editText.getText().toString();

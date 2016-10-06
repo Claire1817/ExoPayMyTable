@@ -14,25 +14,28 @@ import retrofit.mime.TypedInput;
 
 /**
  * Created by claire on 30/09/2016.
+ * Find here http://stackoverflow.com/questions/27485346/malformedjsonexception-with-retrofit-api
  */
 
 public class LenientGsonConverter extends GsonConverter{
+
     private Gson mGson;
 
-    public  LenientGsonConverter(Gson gson)
-    {
+    public  LenientGsonConverter(Gson gson) {
+
         super(gson);
         mGson = gson;
     }
 
-    public LenientGsonConverter(Gson gson, String charset)
-    {
+    public LenientGsonConverter(Gson gson, String charset) {
+
         super(gson, charset);
         mGson = gson;
     }
 
     @Override
     public Object fromBody(TypedInput body, Type type) throws ConversionException {
+
         boolean willCloseStream = false; // try to close the stream, if there is no exception thrown using tolerant  JsonReader
         try {
             JsonReader jsonReader = new JsonReader(new InputStreamReader(body.in()));
@@ -49,7 +52,9 @@ public class LenientGsonConverter extends GsonConverter{
         }
         return super.fromBody(body, type);
     }
+
     private void closeStream(TypedInput body){
+
         try {
             InputStream in = body.in();
             in.close();
@@ -57,5 +62,4 @@ public class LenientGsonConverter extends GsonConverter{
             e.printStackTrace();
         }
     }
-
 }

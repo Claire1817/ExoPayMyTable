@@ -39,21 +39,24 @@ import retrofit2.Retrofit;
 
 public class DisplayMessageActivity extends AppCompatActivity {
 
-    public List<HandWriting> ListFont;
-    public RetrofitManager Tmp;
-    public String Message;
+    private List<HandWriting> listFont;
+
+    private RetrofitManager tmp;
+
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_message);
         Intent intent = getIntent();
-        Message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        Tmp = RetrofitManager.getInstance();
-        Tmp.getService().getHandWritings(new Callback<List<HandWriting>>() {
+        message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        tmp = RetrofitManager.getInstance();
+        tmp.getService().getHandWritings(new Callback<List<HandWriting>>() {
             @Override
             public void success(List<HandWriting> font, final Response response) {
-                LoadPrintImage(font);
+                loadPrintImage(font);
             }
             @Override
             public void failure(RetrofitError error) {
@@ -62,26 +65,32 @@ public class DisplayMessageActivity extends AppCompatActivity {
         });
     }
 
-    public void LoadPrintImage(List<HandWriting> Font) {
-        ListFont = Font;
+    public void loadPrintImage(List<HandWriting> font) {
+
+        listFont = font;
         HashMap<String, String> data = new HashMap<String, String>();
-        data.put("handwriting_id", ListFont.get(1).getId());
-        data.put("text", Message);
+        data.put("handwriting_id", listFont.get(1).getId());
+        data.put("text", message);
         data.put("handwriting_size", "200px");
 
-        Tmp.getService().getImage(data, new Callback<Response>() {
+        tmp.getService().getImage(data, new Callback<Response>() {
             @Override
-            public void success(Response response, Response reponse) {
-                TypedByteArray ret = (TypedByteArray)response.getBody();
-                Bitmap decodeByte = BitmapFactory.decodeByteArray(ret.getBytes(), 0, ret.getBytes().length);
-                ImageView image = (ImageView)findViewById(R.id.image_text);
-                image.setImageBitmap(decodeByte);
+            public void success(Response response, Response reponseApi) {
+                putInImage(response);
             }
             @Override
             public void failure(RetrofitError error) {
                 Log.d("DisplayMessageActivity", error.getMessage());
             }
         });
+    }
+
+    public void putInImage(Response response) {
+
+        TypedByteArray ret = (TypedByteArray)response.getBody();
+        Bitmap decodeByte = BitmapFactory.decodeByteArray(ret.getBytes(), 0, ret.getBytes().length);
+        ImageView image = (ImageView)findViewById(R.id.image_text);
+        image.setImageBitmap(decodeByte);
     }
 }
 

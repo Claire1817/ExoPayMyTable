@@ -17,13 +17,15 @@ import retrofit.http.QueryMap;
 
 /**
  * Created by claire on 23/09/2016.
+ * Request API
  */
 
 public interface ILoadImage {
+
     @GET("/handwritings")
     void getHandWritings(Callback<List<HandWriting>> list);
 
     @GET("/render/png")
     void getImage(
-            @QueryMap HashMap<String, String> options, Callback<Response> reponse);
+            @QueryMap HashMap<String, String> options, Callback<Response> response);
 }
