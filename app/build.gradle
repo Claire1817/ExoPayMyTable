@@ -30,4 +30,5 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    compile 'com.pnikosis:materialish-progress:1.7'
 }

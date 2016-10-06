@@ -1,41 +1,20 @@
 package com.example.claire.exo;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.gson.JsonObject;
-import com.squareup.okhttp.ResponseBody;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.mime.TypedByteArray;
-import retrofit2.Retrofit;
 
 public class DisplayMessageActivity extends AppCompatActivity {
 
@@ -44,6 +23,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
     private RetrofitManager tmp;
 
     private String message;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +60,8 @@ public class DisplayMessageActivity extends AppCompatActivity {
             }
             @Override
             public void failure(RetrofitError error) {
+                Toast.makeText(DisplayMessageActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(DisplayMessageActivity.this, "Character no accepted", Toast.LENGTH_LONG).show();
                 Log.d("DisplayMessageActivity", error.getMessage());
             }
         });
@@ -92,5 +74,6 @@ public class DisplayMessageActivity extends AppCompatActivity {
         ImageView image = (ImageView)findViewById(R.id.image_text);
         image.setImageBitmap(decodeByte);
     }
+
 }
 
