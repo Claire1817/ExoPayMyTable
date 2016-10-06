@@ -15,7 +15,6 @@ import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.android.AndroidLog;
 import retrofit.client.OkClient;
-import retrofit.converter.GsonConverter;
 
 /**
  * Created by claire on 23/09/2016.
@@ -24,23 +23,23 @@ import retrofit.converter.GsonConverter;
 public class RetrofitManager {
 
     private static final String ENDPOINT = "https://api.handwriting.io";
-    private static int TIMEOUT_VALUE = 10;
-    private static LoadImage service = null;
-    private static RetrofitManager instance = null;
+    private static int TimeOutValue = 10;
+    private static ILoadImage Service = null;
+    private static RetrofitManager Instance = null;
 
     private RetrofitManager() {
-        String username = "2176W8NHDNZVNB6V";
-        String password = "V5MDVZ7591W57ZCQ";
+        String Username = "2176W8NHDNZVNB6V";
+        String Password = "V5MDVZ7591W57ZCQ";
 
         // concatenate username and password with colon for authentication
-        String credentials = username + ":" + password;
+        String credentials = Username + ":" + Password;
         // create Base64 encodet string
         final String basic =
                 "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
 
         final OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.setReadTimeout(TIMEOUT_VALUE, TimeUnit.SECONDS);
-        okHttpClient.setConnectTimeout(TIMEOUT_VALUE, TimeUnit.SECONDS);
+        okHttpClient.setReadTimeout(TimeOutValue, TimeUnit.SECONDS);
+        okHttpClient.setConnectTimeout(TimeOutValue, TimeUnit.SECONDS);
 
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
@@ -60,20 +59,20 @@ public class RetrofitManager {
                 request.addHeader("Accept", "application/json");
             }
         });
-        service = builder
+        Service = builder
                 .build()
-                .create(LoadImage.class);
+                .create(ILoadImage.class);
     }
 
     public static RetrofitManager getInstance() {
-        if (instance == null) {
+        if (Instance == null) {
             return (new RetrofitManager());
         } else
-            return instance;
+            return Instance;
     }
 
-    public static LoadImage getService() {
-        return service;
+    public static ILoadImage getService() {
+        return Service;
     }
 
     public static boolean isNetworkAvailable(Context context) {

@@ -39,18 +39,18 @@ import retrofit2.Retrofit;
 
 public class DisplayMessageActivity extends AppCompatActivity {
 
-    public List<HandWriting> list_font;
-    public RetrofitManager tmp;
-    public String _message;
+    public List<HandWriting> ListFont;
+    public RetrofitManager Tmp;
+    public String Message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_message);
         Intent intent = getIntent();
-        _message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        tmp = RetrofitManager.getInstance();
-        tmp.getService().getHandWritings(new Callback<List<HandWriting>>() {
+        Message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        Tmp = RetrofitManager.getInstance();
+        Tmp.getService().getHandWritings(new Callback<List<HandWriting>>() {
             @Override
             public void success(List<HandWriting> font, final Response response) {
                 LoadPrintImage(font);
@@ -62,14 +62,14 @@ public class DisplayMessageActivity extends AppCompatActivity {
         });
     }
 
-    public void LoadPrintImage(List<HandWriting> font) {
-        list_font = font;
+    public void LoadPrintImage(List<HandWriting> Font) {
+        ListFont = Font;
         HashMap<String, String> data = new HashMap<String, String>();
-        data.put("handwriting_id", list_font.get(1).getId());
-        data.put("text", _message);
+        data.put("handwriting_id", ListFont.get(1).getId());
+        data.put("text", Message);
         data.put("handwriting_size", "200px");
 
-        tmp.getService().getImage(data, new Callback<Response>() {
+        Tmp.getService().getImage(data, new Callback<Response>() {
             @Override
             public void success(Response response, Response reponse) {
                 TypedByteArray ret = (TypedByteArray)response.getBody();

@@ -19,7 +19,7 @@ import retrofit.http.QueryMap;
  * Created by claire on 23/09/2016.
  */
 
-public interface LoadImage {
+public interface ILoadImage {
     @GET("/handwritings")
     void getHandWritings(Callback<List<HandWriting>> list);
 

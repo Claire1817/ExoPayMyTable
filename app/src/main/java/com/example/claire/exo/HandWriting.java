@@ -1,40 +1,59 @@
 package com.example.claire.exo;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by claire on 23/09/2016.
  */
 
 public class HandWriting {
+    @SerializedName("id")
     public String id;
-    public String title;
-    public String date_created;
-    public String date_modified;
-    public int rating_neatness;
-    public int rating_cursivity;
-    public int rating_embellishment;
 
-    public void setRating_character_width(int rating_character_width) {
-        this.rating_character_width = rating_character_width;
+    @SerializedName("title")
+    public String title;
+
+    @SerializedName("date_created")
+    public String dateCreated;
+
+    @SerializedName("date_modified")
+    public String dateModified;
+
+    @SerializedName("rating_neatness")
+    public int ratingNeatness;
+
+    @SerializedName("rating_cursivity")
+    public int ratingCursivity;
+
+    @SerializedName("rating_embellishment")
+    public int ratingEmbellishment;
+
+    @SerializedName("rating_character_width")
+    public int ratingCharacterWidth;
+
+
+    public void setRatingCharacterWidth(int rating_character_width) {
+        this.ratingCharacterWidth = rating_character_width;
     }
 
-    public void setRating_embellishment(int rating_embellishment) {
-        this.rating_embellishment = rating_embellishment;
+    public void setRatingEmbellishment(int rating_embellishment) {
+        this.ratingEmbellishment = rating_embellishment;
     }
 
     public void setRating_cursivity(int rating_cursivity) {
-        this.rating_cursivity = rating_cursivity;
+        this.ratingCursivity = rating_cursivity;
     }
 
-    public void setRating_neatness(int rating_neatness) {
-        this.rating_neatness = rating_neatness;
+    public void setRatingNeatness(int rating_neatness) {
+        this.ratingNeatness = rating_neatness;
     }
 
     public void setDate_modified(String date_modified) {
-        this.date_modified = date_modified;
+        this.dateModified = date_modified;
     }
 
     public void setDate_created(String date_created) {
-        this.date_created = date_created;
+        this.dateCreated = date_created;
     }
 
     public void setTitle(String title) {
@@ -45,30 +64,28 @@ public class HandWriting {
         this.id = id;
     }
 
-    public int rating_character_width;
-
     public int getRating_character_width() {
-        return rating_character_width;
+        return ratingCharacterWidth;
     }
 
     public int getRating_embellishment() {
-        return rating_embellishment;
+        return ratingEmbellishment;
     }
 
     public int getRating_cursivity() {
-        return rating_cursivity;
+        return ratingCursivity;
     }
 
     public int getRating_neatness() {
-        return rating_neatness;
+        return ratingNeatness;
     }
 
     public String getDate_modified() {
-        return date_modified;
+        return dateModified;
     }
 
     public String getDate_created() {
-        return date_created;
+        return dateCreated;
     }
 
     public String getTitle() {
