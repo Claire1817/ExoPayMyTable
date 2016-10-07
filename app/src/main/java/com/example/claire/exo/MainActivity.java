@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     public final static String SIZE_SELECTED = "10px";
 
     public final static String COLOR_SELECTED = "#000000";
+
+    public final static String WIDTH_SIZE = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +63,23 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = (EditText) findViewById(R.id.edit_message);
         String message = editText.getText().toString();
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay();
+        int pixel;
+        View v = findViewById(R.id.main_activity_width);
+        pixel = v.getWidth();
+
+        intent.putExtra(WIDTH_SIZE, pixel+"px");
+        Toast.makeText(getApplicationContext(), pixel + " ICI ", Toast.LENGTH_LONG).show();
+
+
         if (checkString(message) == 0)
         {
             intent.putExtra(EXTRA_MESSAGE, message);
             intent.putExtra(SIZE_SELECTED, spinnerSize.getSelectedItem().toString());
             intent.putExtra(COLOR_SELECTED, convertStringToRGB());
+
             startActivity(intent);
         }
     }
@@ -73,10 +88,6 @@ public class MainActivity extends AppCompatActivity {
     {
         if (message.isEmpty() || message.matches("[^a-zA-Z0-9_;-]")) {
             Toast.makeText(getApplicationContext(), "Message is empty or contains characters no accepted", Toast.LENGTH_LONG).show();
-            return 1;
-        }
-        else if (message.length() > 6) {
-            Toast.makeText(getApplicationContext(), "Message is too long", Toast.LENGTH_LONG).show();
             return 1;
         }
         else

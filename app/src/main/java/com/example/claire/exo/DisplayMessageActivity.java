@@ -5,11 +5,14 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +33,8 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
     private String colorSelected;
 
+    private String widthEcran;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -43,7 +48,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
              getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-
+        widthEcran = intent.getStringExtra(MainActivity.WIDTH_SIZE);
         message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         sizeSelected = intent.getStringExtra(MainActivity.SIZE_SELECTED);
         colorSelected = intent.getStringExtra(MainActivity.COLOR_SELECTED);
@@ -80,6 +85,9 @@ public class DisplayMessageActivity extends AppCompatActivity {
         data.put("text", message);
         data.put("handwriting_size", sizeSelected);
         data.put("handwriting_color",colorSelected);
+        data.put("width", widthEcran);
+        data.put("height", "auto");
+
 
         tmp.getService().getImage(data, new Callback<Response>() {
             @Override
