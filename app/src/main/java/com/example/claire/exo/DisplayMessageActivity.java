@@ -2,14 +2,12 @@ package com.example.claire.exo;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +24,10 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
     private String message;
 
+    private String sizeSelected;
+
+    private String colorSelected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -33,6 +35,8 @@ public class DisplayMessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_message);
         Intent intent = getIntent();
         message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        sizeSelected = intent.getStringExtra(MainActivity.SIZE_SELECTED);
+        colorSelected = intent.getStringExtra(MainActivity.COLOR_SELECTED);
         tmp = RetrofitManager.getInstance();
         tmp.getService().getHandWritings(new Callback<List<HandWriting>>() {
             @Override
@@ -52,7 +56,8 @@ public class DisplayMessageActivity extends AppCompatActivity {
         HashMap<String, String> data = new HashMap<String, String>();
         data.put("handwriting_id", listFont.get(1).getId());
         data.put("text", message);
-        data.put("handwriting_size", "200px");
+        data.put("handwriting_size", sizeSelected);
+        data.put("handwriting_color",colorSelected);
 
         tmp.getService().getImage(data, new Callback<Response>() {
             @Override
@@ -61,7 +66,8 @@ public class DisplayMessageActivity extends AppCompatActivity {
             }
             @Override
             public void failure(RetrofitError error) {
-                Toast.makeText(DisplayMessageActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                ProgressBar spinner = (ProgressBar)findViewById(R.id.progressBar1);
+                spinner.setVisibility(View.GONE);
                 Toast.makeText(DisplayMessageActivity.this, "Character no accepted", Toast.LENGTH_LONG).show();
                 Log.d("DisplayMessageActivity", error.getMessage());
             }

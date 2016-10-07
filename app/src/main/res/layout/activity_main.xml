@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/edit_message"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="285dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="0dp"
         android:hint="@string/edit_message" />
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="sendMessage"
+        android:layout_marginRight="10dp"
         android:text="@string/button_send" />
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="-360dp"
+        android:text="@string/optionSize"/>
+
+    <Spinner
+        android:id="@+id/dispoSize"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="-320dp"
+        android:text="@string/optionColor"/>
+
+    <Spinner
+        android:id="@+id/dispoColor"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="300dp"/>
 
 </LinearLayout>

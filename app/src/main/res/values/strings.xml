@@ -2,4 +2,18 @@
     <string name="app_name">Exo</string>
     <string name="edit_message">Enter message</string>
     <string name="button_send">Send</string>
+    <string name="optionSize">Select your size</string>
+    <string name="optionColor">Select your color</string>
+    <string-array name="Size">
+        <item>10px</item>
+        <item>90px</item>
+        <item>200px</item>
+    </string-array>
+    <string-array name="Color">
+        <item>Black</item>
+        <item>Blue</item>
+        <item>Red</item>
+        <item>Green</item>
+        <item>Pink</item>
+    </string-array>
 </resources>
