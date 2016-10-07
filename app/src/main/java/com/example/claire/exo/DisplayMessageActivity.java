@@ -4,7 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -34,6 +36,14 @@ public class DisplayMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_message);
         Intent intent = getIntent();
+
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+             getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         sizeSelected = intent.getStringExtra(MainActivity.SIZE_SELECTED);
         colorSelected = intent.getStringExtra(MainActivity.COLOR_SELECTED);
@@ -48,6 +58,18 @@ public class DisplayMessageActivity extends AppCompatActivity {
                 Log.d("DisplayMessageActivity", error.getMessage());
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void loadPrintImage(List<HandWriting> font) {

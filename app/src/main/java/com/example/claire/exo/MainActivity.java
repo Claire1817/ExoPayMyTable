@@ -2,8 +2,11 @@ package com.example.claire.exo;
 
 import android.content.Intent;
 import android.icu.text.Normalizer;
+import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
@@ -33,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         spinnerSize = (Spinner)findViewById(R.id.dispoSize);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
