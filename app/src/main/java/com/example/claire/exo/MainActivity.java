@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Spinner spinnerColor;
 
-    public final static String SIZE_SELECTED = "10px";
+    public final static String SIZE_SELECTED = "30px";
 
     public final static String COLOR_SELECTED = "#000000";
 
@@ -69,11 +69,9 @@ public class MainActivity extends AppCompatActivity {
         int pixel;
         View v = findViewById(R.id.main_activity_width);
         pixel = v.getWidth();
-
         intent.putExtra(WIDTH_SIZE, pixel+"px");
-        Toast.makeText(getApplicationContext(), pixel + " ICI ", Toast.LENGTH_LONG).show();
 
-
+        message = cleanSting(message);
         if (checkString(message) == 0)
         {
             intent.putExtra(EXTRA_MESSAGE, message);
@@ -84,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public int checkString(String message)
+    private int checkString(String message)
     {
         if (message.isEmpty() || message.matches("[^a-zA-Z0-9_;-]")) {
             Toast.makeText(getApplicationContext(), "Message is empty or contains characters no accepted", Toast.LENGTH_LONG).show();
@@ -94,8 +92,27 @@ public class MainActivity extends AppCompatActivity {
             return 0;
     }
 
+    private static String cleanSting(String s)
+        {
+        final String accents = "ÀÁÂÃÄÅàáâãäåÈÉÊËèéêë";
+        final String letters = "AAAAAAaaaaaaEEEEeeee";
+
+        StringBuffer buffer = null;
+        for(int i = s.length()-1 ; i >= 0; i--) {
+            int index = accents.indexOf(s.charAt(i));
+            if (index >= 0) {
+                if (buffer == null) {
+                    buffer = new StringBuffer(s);
+                }
+                buffer.setCharAt(i, letters.charAt(index));
+            }
+        }
+        return buffer==null ? s : buffer.toString();
+    }
+
     private String convertStringToRGB()
     {
+
         Map<String, String> corresColor = new HashMap<String, String>();
 
         corresColor.put("Black", "#000000");

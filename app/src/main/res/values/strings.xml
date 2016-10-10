@@ -5,8 +5,10 @@
     <string name="optionSize">Select your size</string>
     <string name="optionColor">Select your color</string>
     <string-array name="Size">
-        <item>10px</item>
+        <item>30px</item>
+        <item>50</item>
         <item>90px</item>
+        <item>150px</item>
         <item>200px</item>
     </string-array>
     <string-array name="Color">
