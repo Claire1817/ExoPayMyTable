@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_activity_width"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id = "@+id/main_activity_width">
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorAccent"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@android:color/white" />
 
     <EditText
         android:id="@+id/edit_message"
-        android:layout_width="285dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="0dp"
         android:hint="@string/edit_message" />
@@ -15,34 +27,36 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="sendMessage"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="150dp"
         android:layout_marginTop="0dp"
+        android:onClick="sendMessage"
         android:text="@string/button_send" />
+
     <TextView
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="-360dp"
-        android:text="@string/optionSize"/>
+        android:layout_marginTop="100dp"
+        android:text="@string/optionSize" />
 
     <Spinner
         android:id="@+id/dispoSize"
         android:layout_width="170dp"
         android:layout_height="50dp"
-        android:layout_marginTop="200dp"/>
+        android:layout_marginLeft="210dp"
+        android:layout_marginTop="-60dp" />
 
     <TextView
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="-320dp"
-        android:text="@string/optionColor"/>
+        android:layout_marginTop="80dp"
+        android:text="@string/optionColor" />
 
-    <Spinner
-        android:id="@+id/dispoColor"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="300dp"/>
+
+    <com.larswerkman.holocolorpicker.ColorPicker
+        android:id="@+id/picker"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="-100dp" />
 
 </LinearLayout>

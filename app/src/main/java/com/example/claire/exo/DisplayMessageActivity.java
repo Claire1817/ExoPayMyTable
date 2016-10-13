@@ -5,14 +5,11 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.Toast;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +30,6 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
     private String colorSelected;
 
-    private String widthEcran;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +44,6 @@ public class DisplayMessageActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
              getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        widthEcran = intent.getStringExtra(MainActivity.WIDTH_SIZE);
         message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         sizeSelected = intent.getStringExtra(MainActivity.SIZE_SELECTED);
         colorSelected = intent.getStringExtra(MainActivity.COLOR_SELECTED);
@@ -85,7 +80,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         data.put("text", message);
         data.put("handwriting_size", sizeSelected);
         data.put("handwriting_color",colorSelected);
-        data.put("width", widthEcran);
+        data.put("width", "auto");
         data.put("height", "auto");
 
 
@@ -106,13 +101,12 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
     public void putInImage(Response response) {
 
-        TypedByteArray ret = (TypedByteArray)response.getBody();
+        TypedByteArray ret = (TypedByteArray) response.getBody();
         Bitmap decodeByte = BitmapFactory.decodeByteArray(ret.getBytes(), 0, ret.getBytes().length);
-        ProgressBar spinner = (ProgressBar)findViewById(R.id.progressBar1);
+        ProgressBar spinner = (ProgressBar) findViewById(R.id.progressBar1);
         spinner.setVisibility(View.GONE);
-        ImageView image = (ImageView)findViewById(R.id.image_text);
+        ImageView image = (ImageView) findViewById(R.id.image_text);
         image.setImageBitmap(decodeByte);
     }
-
 }
 

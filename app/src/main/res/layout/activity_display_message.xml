@@ -18,13 +18,31 @@
         android:layout_alignParentTop="true"
         android:background="?attr/colorAccent"
         android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@android:color/white"/>
+        app:titleTextColor="@android:color/white" />
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <ImageView
-    android:id="@+id/image_text"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/childOfScrollView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/image_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </ScrollView>
 
     <ProgressBar
         android:id="@+id/progressBar1"
