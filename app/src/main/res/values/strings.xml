@@ -5,11 +5,11 @@
     <string name="optionSize">Select your size</string>
     <string name="optionColor">Select your color</string>
     <string-array name="Size">
-        <item>30px</item>
-        <item>50px</item>
         <item>90px</item>
         <item>150px</item>
+        <item>170px</item>
         <item>200px</item>
+        <item>220px</item>
     </string-array>
     <string-array name="Color">
         <item>Black</item>
